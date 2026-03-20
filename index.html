@@ -2,35 +2,42 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Selamat Idul Fitri</title>
 
 <style>
 body {
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
     font-family: 'Arial';
     background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
     color: white;
     text-align: center;
 }
 
-/* Teks */
+/* Container biar rapi di HP */
+.container {
+    padding: 20px;
+}
+
+/* Teks utama */
 h1 {
-    margin-top: 80px;
-    font-size: 45px;
+    margin-top: 40px;
+    font-size: 7vw;
     animation: glow 2s infinite alternate;
 }
 
+/* Paragraf */
 p {
-    font-size: 20px;
+    font-size: 4vw;
 }
 
-/* UCAPAN TAMBAHAN */
+/* UCAPAN */
 .ucapan{
-    width: 70%;
+    width: 90%;
     margin: auto;
-    margin-top: 20px;
-    font-size: 20px;
+    margin-top: 15px;
+    font-size: 4vw;
     line-height: 1.6;
 }
 
@@ -42,10 +49,10 @@ p {
 
 /* Tombol */
 button {
-    padding: 12px 25px;
-    font-size: 18px;
+    padding: 12px 20px;
+    font-size: 4vw;
     border: none;
-    border-radius: 15px;
+    border-radius: 12px;
     background: linear-gradient(45deg, #00c9a7, #92fe9d);
     color: black;
     cursor: pointer;
@@ -53,15 +60,16 @@ button {
     transition: 0.3s;
 }
 
-button:hover {
-    transform: scale(1.1);
+button:active {
+    transform: scale(0.95);
 }
 
 /* Ketupat */
 .ketupat {
     position: absolute;
-    width: 50px;
+    width: 40px;
     animation: fall linear infinite;
+    z-index: 0;
 }
 
 @keyframes fall {
@@ -72,8 +80,8 @@ button:hover {
 /* Kembang api */
 .firework {
     position: absolute;
-    width: 5px;
-    height: 5px;
+    width: 4px;
+    height: 4px;
     background: white;
     border-radius: 50%;
     animation: explode 1s ease-out forwards;
@@ -81,25 +89,33 @@ button:hover {
 
 @keyframes explode {
     0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(20); opacity: 0; }
+    100% { transform: scale(15); opacity: 0; }
 }
 
-/* Masjid background */
+/* Masjid */
 .mosque {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     opacity: 0.3;
+    pointer-events: none;
 }
 
+/* Desktop tetap bagus */
+@media (min-width: 768px) {
+    h1 { font-size: 45px; }
+    p, .ucapan { font-size: 18px; }
+    button { font-size: 18px; }
+}
 </style>
 </head>
 
 <body>
 
+<div class="container">
+
 <h1>🌙 Selamat Idul Fitri 1447 H 🌙</h1>
 
-<!-- UCAPAN DIMASUKKAN DI SINI -->
 <div class="ucapan">
 <p>Taqabbalallahu minna wa minkum</p>
 
@@ -115,9 +131,7 @@ Semoga kebahagiaan, kedamaian,
 dan keberkahan selalu menyertai kita semua.
 </p>
 
-<p>
-✨ Selamat merayakan hari kemenangan ✨
-</p>
+<p>✨ Selamat merayakan hari kemenangan ✨</p>
 
 <p><b>Salam hangat dari</b></p>
 <p><b>Keluarga Apri Nugraha Joas Putra</b></p>
@@ -125,11 +139,12 @@ dan keberkahan selalu menyertai kita semua.
 
 <button onclick="startAll()">🔊 Mulai Takbiran</button>
 
+</div>
+
 <audio id="audio" loop>
     <source src="audio.mp3">
 </audio>
 
-<!-- Background Masjid -->
 <img class="mosque" src="mosque_PNG28.png">
 
 <script>
@@ -139,17 +154,16 @@ function startAll() {
     startFireworks();
 }
 
-// Ketupat jatuh
-for (let i = 0; i < 25; i++) {
+// Ketupat jatuh (lebih ringan untuk HP)
+for (let i = 0; i < 15; i++) {
     let k = document.createElement("img");
 
     k.src = "ketupat 2.png";
-
     k.className = "ketupat";
 
     k.style.left = Math.random() * window.innerWidth + "px";
-    k.style.animationDuration = (3 + Math.random() * 5) + "s";
-    k.style.width = (30 + Math.random() * 40) + "px";
+    k.style.animationDuration = (4 + Math.random() * 4) + "s";
+    k.style.width = (25 + Math.random() * 25) + "px";
 
     document.body.appendChild(k);
 }
@@ -166,7 +180,7 @@ function startFireworks() {
         document.body.appendChild(fw);
 
         setTimeout(() => fw.remove(), 1000);
-    }, 300);
+    }, 500);
 }
 </script>
 
