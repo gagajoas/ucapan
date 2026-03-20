@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Selamat Idul Fitri</title>
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Arial';
+    background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+    color: white;
+    text-align: center;
+}
+
+/* Teks */
+h1 {
+    margin-top: 80px;
+    font-size: 45px;
+    animation: glow 2s infinite alternate;
+}
+
+p {
+    font-size: 20px;
+}
+
+/* UCAPAN TAMBAHAN */
+.ucapan{
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+/* Glow */
+@keyframes glow {
+    from { text-shadow: 0 0 10px #fff; }
+    to { text-shadow: 0 0 25px #00ffcc; }
+}
+
+/* Tombol */
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(45deg, #00c9a7, #92fe9d);
+    color: black;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Ketupat */
+.ketupat {
+    position: absolute;
+    width: 50px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-100px) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Kembang api */
+.firework {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(20); opacity: 0; }
+}
+
+/* Masjid background */
+.mosque {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    opacity: 0.3;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🌙 Selamat Idul Fitri 1447 H 🌙</h1>
+
+<!-- UCAPAN DIMASUKKAN DI SINI -->
+<div class="ucapan">
+<p>Taqabbalallahu minna wa minkum</p>
+
+<p>
+Di hari yang suci dan penuh berkah ini,
+kami sekeluarga mengucapkan
+<b>Mohon Maaf Lahir dan Batin</b>
+atas segala khilaf dan salah.
+</p>
+
+<p>
+Semoga kebahagiaan, kedamaian,
+dan keberkahan selalu menyertai kita semua.
+</p>
+
+<p>
+✨ Selamat merayakan hari kemenangan ✨
+</p>
+
+<p><b>Salam hangat dari</b></p>
+<p><b>Keluarga Apri Nugraha Joas Putra</b></p>
+</div>
+
+<button onclick="startAll()">🔊 Mulai Takbiran</button>
+
+<audio id="audio" loop>
+    <source src="audio.mp3">
+</audio>
+
+<!-- Background Masjid -->
+<img class="mosque" src="mosque_PNG28.png">
+
+<script>
+// START semua efek
+function startAll() {
+    document.getElementById("audio").play();
+    startFireworks();
+}
+
+// Ketupat jatuh
+for (let i = 0; i < 25; i++) {
+    let k = document.createElement("img");
+
+    k.src = "ketupat 2.png";
+
+    k.className = "ketupat";
+
+    k.style.left = Math.random() * window.innerWidth + "px";
+    k.style.animationDuration = (3 + Math.random() * 5) + "s";
+    k.style.width = (30 + Math.random() * 40) + "px";
+
+    document.body.appendChild(k);
+}
+
+// Kembang api
+function startFireworks() {
+    setInterval(() => {
+        let fw = document.createElement("div");
+        fw.className = "firework";
+
+        fw.style.left = Math.random() * window.innerWidth + "px";
+        fw.style.top = Math.random() * window.innerHeight + "px";
+
+        document.body.appendChild(fw);
+
+        setTimeout(() => fw.remove(), 1000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
